@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body, html {
+          height: 100%;
+          margin: 0;
+        }
+
+        .bgimg {
+          background-image: url( {{ url_for('static', filename='forestbridge.jpg') }} );
+          height: 100%;
+          background-position: center;
+          background-size: cover;
+          position: relative;
+          color: white;
+          font-family: "Courier New", Courier, monospace;
+          font-size: 25px;
+        }
+
+        .topleft {
+          position: absolute;
+          top: 0;
+          left: 16px;
+        }
+
+        .bottomright {
+          position: absolute;
+          bottom: 0;
+          right: 16px;
+        }
+
+        .logout-button{
+            position: absolute;
+            top: 0;
+            right: 10px;
+            background-color: #f44336; /* Red Colour */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover{
+            background-color: #8b0000;
+        }
+
+        .middle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+
+        hr {
+          margin: auto;
+          width: 40%;
+        }
+    </style>
+    <meta charset="UTF-8" http-equiv="refresh" content="30">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <div class="bgimg">
+        <div class="topleft">
+            <p>WELCOME TO OUR PROJECT</p>
+        </div>
+        <div class="middle">
+            <h1>RISK BASED MULTI-FACTOR AUTHENTICATION</h1>
+            <hr>
+            <p>SUDEEP DALAI AND JANHVI JOSHI</p>
+            <p>CCVT</p>
+        </div>
+        <div class="bottomright">
+            <p><span id="datetime"></span></p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +"  "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            </script>
+        </div>
+
+        <form action="/logout" method="GET">
+            <button type="submit" class="logout-button"> Logout </button>
+        </form>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+    <meta charset="UTF-8" http-equiv="refresh" content="900">
+    <title>Login</title>
+</head>
+
+<body onload="getLocation()">
+    <p style="color:white;">{{info}}</p>
+    <div class="login">
+        <h1> Login</h1>
+        <form action="/login" method="post">
+            <div class="container">
+                <input type="text" placeholder="Username" name="username" required><br>
+                <input type="password" placeholder="Password" name="password" required><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Login</button>
+            </div>
+        </form>
+        <p style="color:white;">Don't have an account?? <a href="{{ url_for('register') }}" style="background-color:powderblue;">Sign Up</a></p>
+    </div>
+    <script type = "text/javascript">
+        var x = document.getElementById("error");
+        let locationData ={
+            latitude :'',
+            longitude :'',
+            accuracy :'',
+            time:''
+        }
+
+        //this function sets the cookies to the respective keys
+        function setCookie(cookieName,data) {
+            var date = new Date();
+            date.setTime(date.getTime() + 15 * 60 * 1000);
+            var expires = "expires=" + date.toUTCString();
+            document.cookie = cookieName+"=" + data + ";"+ expires + ";path=/;";
+        }
+
+        function success_handler(position) {
+            locationData.latitude = position.coords.latitude;
+            locationData.longitude = position.coords.longitude;
+            locationData.accuracy = position.coords.accuracy;
+            var dt = new Date();
+            locationData.time = (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2));
+            setCookie('locationData',JSON.stringify(locationData))
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success_handler);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+    </script>
+
+</body>
+</html>

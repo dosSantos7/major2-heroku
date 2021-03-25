@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+    <meta charset="UTF-8" http-equiv="refresh" content="900">
+    <title>Validate OTP</title>
+</head>
+
+<body>
+    <p style="color:white;">{{info}}</p>
+    <div class="login">
+        <h1>Validate OTP</h1>
+        <form action="/validate" method="POST">
+            <div class="container">
+                <p>We have sent an OTP code on your registered phone number: {{ phone_number }}</p>
+                <input type="tel" placeholder="OTP" id="otp_code" name="otp_code" required><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Submit</button>
+            </div>
+        </form><br>
+        <a style="background-color:powderblue;" href="">Resend OTP</a>
+
+    </div>
+
+</body>
+</html>
